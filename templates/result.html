@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Results | CareerAI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="nav-brand">🎯 CareerAI</a>
+    <div class="nav-links">
+      <span>{{ user_name }} 👋</span>
+      <a href="/profile" class="btn-nav">Re-Test</a>
+      <a href="/logout" class="btn-secondary-sm">Logout</a>
+    </div>
+  </nav>
+
+  <div class="result-container">
+
+    <div class="result-header">
+      <h2>🎯 Your Career Recommendations</h2>
+      <p>Based on your skill profile, our <strong>KNN + Decision Tree</strong> hybrid model recommends:</p>
+    </div>
+
+    <!-- Career Table -->
+    <div class="card">
+      <h3>📊 Ranked Career Roles</h3>
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Career Role</th>
+            <th>Match Score</th>
+            <th>Market Demand</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in results %}
+          <tr {% if r.rank == 1 %}class="top-row"{% endif %}>
+            <td>
+              {% if r.rank == 1 %}🥇{% elif r.rank == 2 %}🥈{% elif r.rank == 3 %}🥉{% else %}{{ r.rank }}{% endif %}
+            </td>
+            <td><strong>{{ r.career_role }}</strong></td>
+            <td>
+              <div class="score-bar-wrap">
+                <div class="score-bar" style="width: {{ r.match_score }}%"></div>
+                <span>{{ r.match_score }}%</span>
+              </div>
+            </td>
+            <td>
+              <span class="demand-badge {{ r.demand | lower }}">{{ r.demand }}</span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Skill Gap Report -->
+    <div class="card">
+      <h3>🔍 Skill Gap Report — For Your Top Career</h3>
+      <p class="gap-sub">These are skills you should develop to excel as a <strong>{{ results[0].career_role }}</strong>:</p>
+      <div class="gap-grid">
+        {% for skill, link in gaps %}
+        <div class="gap-card">
+          <div class="gap-icon">📌</div>
+          <div class="gap-info">
+            <strong>{{ skill }}</strong>
+            <a href="{{ link }}" target="_blank">Start Learning →</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ML Info Box -->
+    <div class="card ml-info">
+      <h3>🤖 How We Calculated This</h3>
+      <p>
+        Your input features <code>[Python, ML, Web, DB, Aptitude, GPA]</code> were normalized to [0,1].
+        Then <strong>KNN (k=3)</strong> computed Euclidean distance to find nearest career profiles,
+        and <strong>Decision Tree</strong> classified using Information Gain.
+        Final score = average of both model probabilities.
+      </p>
+    </div>
+
+    <div class="result-actions">
+      <a href="/profile" class="btn-primary">🔄 Try Again</a>
+      <a href="/logout" class="btn-secondary">Logout</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p>AI-Powered Career Recommendation System | Mayur Gawatre | AIML 2025-26</p>
+  </footer>
+
+</body>
+</html>

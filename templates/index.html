@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Career Recommender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand">🎯 CareerAI</div>
+    <div class="nav-links">
+      <a href="/register">Register</a>
+      <a href="/login" class="btn-nav">Login</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="badge">Powered by Machine Learning</span>
+      <h1>Find Your <span class="highlight">Perfect Career</span> with AI</h1>
+      <p>
+        Enter your skills, interests, and aptitude scores. Our ML model using
+        <strong>KNN + Decision Tree</strong> will recommend the best career path for you.
+      </p>
+      <div class="hero-buttons">
+        <a href="/register" class="btn-primary">Get Started →</a>
+        <a href="/login" class="btn-secondary">I have an account</a>
+      </div>
+    </div>
+
+    <div class="hero-cards">
+      <div class="feature-card">
+        <div class="icon">🤖</div>
+        <h3>ML Powered</h3>
+        <p>KNN + Decision Tree algorithms analyze your profile</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>Skill Gap Report</h3>
+        <p>Know exactly what skills you need to develop</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🎯</div>
+        <h3>Personalized</h3>
+        <p>Recommendations tailored to your unique profile</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Register</h4>
+        <p>Create your account with basic details</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Fill Profile</h4>
+        <p>Enter your skills, GPA & aptitude score</p>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Get Results</h4>
+        <p>AI recommends top career roles for you</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>AI-Powered Career Recommendation System | Mayur Gawatre | AIML 2025-26</p>
+  </footer>
+
+</body>
+</html>

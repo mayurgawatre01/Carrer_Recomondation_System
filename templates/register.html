@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | CareerAI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="nav-brand">🎯 CareerAI</a>
+    <div class="nav-links">
+      <a href="/login" class="btn-nav">Login</a>
+    </div>
+  </nav>
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <h2>Create Account</h2>
+      <p class="auth-sub">Start your AI career journey today</p>
+
+      {% if error %}
+        <div class="alert-error">{{ error }}</div>
+      {% endif %}
+
+      <form method="POST" action="/register">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" name="name" placeholder="e.g. Mayur Gawatre" required/>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="you@example.com" required/>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Create a password" required/>
+        </div>
+        <div class="form-group">
+          <label>CGPA (out of 10)</label>
+          <input type="number" name="gpa" placeholder="e.g. 8.5" step="0.1" min="0" max="10" required/>
+        </div>
+        <button type="submit" class="btn-primary full-width">Register →</button>
+      </form>
+
+      <p class="auth-link">Already have an account? <a href="/login">Login here</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Profile | CareerAI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="nav-brand">🎯 CareerAI</a>
+    <div class="nav-links">
+      <span>Hello, {{ user_name }} 👋</span>
+      <a href="/logout" class="btn-nav">Logout</a>
+    </div>
+  </nav>
+
+  <div class="profile-container">
+    <div class="profile-header">
+      <h2>Fill Your Skill Profile</h2>
+      <p>Rate your skills from 0 to 10. Our ML model will recommend the best career for you.</p>
+    </div>
+
+    <form method="POST" action="/profile" class="profile-form">
+
+      <div class="section-title">🛠️ Technical Skills (0 = No Knowledge, 10 = Expert)</div>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <label>Python</label>
+          <input type="range" name="python_skill" min="0" max="10" value="5"
+                 oninput="document.getElementById('py_val').textContent=this.value"/>
+          <span class="range-val" id="py_val">5</span>
+        </div>
+
+        <div class="skill-card">
+          <label>Machine Learning</label>
+          <input type="range" name="ml_skill" min="0" max="10" value="5"
+                 oninput="document.getElementById('ml_val').textContent=this.value"/>
+          <span class="range-val" id="ml_val">5</span>
+        </div>
+
+        <div class="skill-card">
+          <label>Web Development</label>
+          <input type="range" name="web_skill" min="0" max="10" value="5"
+                 oninput="document.getElementById('web_val').textContent=this.value"/>
+          <span class="range-val" id="web_val">5</span>
+        </div>
+
+        <div class="skill-card">
+          <label>Database (SQL)</label>
+          <input type="range" name="database_skill" min="0" max="10" value="5"
+                 oninput="document.getElementById('db_val').textContent=this.value"/>
+          <span class="range-val" id="db_val">5</span>
+        </div>
+      </div>
+
+      <div class="section-title">📝 Academic & Aptitude</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Aptitude Score (0 – 100)</label>
+          <input type="number" name="aptitude_score" placeholder="e.g. 85" min="0" max="100" required/>
+        </div>
+        <div class="form-group">
+          <label>Primary Interest</label>
+          <select name="interest" required>
+            <option value="Data Science">Data Science</option>
+            <option value="Machine Learning">Machine Learning</option>
+            <option value="Web Development">Web Development</option>
+            <option value="Cybersecurity">Cybersecurity</option>
+            <option value="Software Development">Software Development</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary full-width">🚀 Get My Career Recommendations</button>
+    </form>
+  </div>
+
+</body>
+</html>
